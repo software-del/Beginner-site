@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Responsive Car Website</title>
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" />
+  <style>
+    /* === CSS START === */
+    * {
+      font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+      scroll-padding-top: 1rem;
+      list-style: none;
+      text-decoration: none;
+      box-sizing: border-box;
+    }
+    :root {
+      --main-color: red;
+      --text-color: black;
+      --bg-color: white;
+    }
+    html::-webkit-scrollbar {
+      width: 0.5rem;
+      background: transparent;
+    }
+    html::-webkit-scrollbar-thumb {
+      border-radius: 5rem;
+      background: var(--text-color);
+    }
+    section {
+      padding: 4rem 0 2rem;
+    }
+    img {
+      width: 100%;
+    }
+    body {
+      color: var(--text-color);
+    }
+    .container {
+      max-width: 1068px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    header {
+      display: block;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+    }
+    header.shadow {
+      background: var(--bg-color);
+      box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.2);
+      transition: 0.5s ease;
+    }
+    header.shadow #search-icon {
+      color: var(--text-color);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 35px;
+    }
+    #menu-icon {
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--text-color);
+    }
+    .logo {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text-color);
+    }
+    .logo span {
+      color: var(--main-color);
+    }
+    .navbar {
+      display: flex;
+      column-gap: 2rem;
+    }
+    .navbar a {
+      color: var(--text-color);
+      font-size: 1rem;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+    .navbar a:hover,
+    .navbar .active {
+      color: var(--main-color);
+      border-bottom: 3px solid var(--main-color);
+    }
+    #search-icon {
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--bg-color);
+    }
+    .search-box {
+      position: absolute;
+      top: 110%;
+      right: 0;
+      left: 0;
+      background: var(--bg-color);
+      box-shadow: 4px 4px 20px rgb(15 54 55 / 10%);
+      border: 1px solid var(--main-color);
+      border-radius: 0.5rem;
+      clip-path: circle(0% at 100% 0%);
+    }
+    .search-box.active {
+      clip-path: circle(144% at 100% 0%);
+      transition: 0.4s;
+    }
+    .search-box input {
+      width: 100%;
+      padding: 20px;
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 1rem;
+    }
+    .home {
+      max-width: 1300px;
+      margin: auto;
+      width: 100%;
+      min-height: 640px;
+      display: flex;
+      align-items: center;
+      background: url("Car 6.jpg");
+      background-repeat: no-repeat;
+      background-position: center left;
+      transform: scale(0.9);
+      transition: 0.5s;
+    }
+    .home-text {
+      padding-left: 130px;
+    }
+    .home-text h1 {
+      font-size: 2.4rem;
+    }
+    .home-text span {
+      color: var(--main-color);
+    }
+    .home-text p {
+      font-size: 0.934rem;
+      font-weight: 300;
+      margin: 0.5rem 0 1.2rem;
+    }
+    .btn {
+      padding: 10px 22px;
+      background: var(--main-color);
+      color: var(--bg-color);
+      font-weight: 400;
+    }
+    .btn:hover {
+      background: rgb(248, 109, 109);
+    }
+    .heading {
+      text-align: center;
+    }
+    .heading span {
+      font-weight: 500;
+      color: var(--main-color);
+    }
+    .heading p {
+      font-size: 0.932rem;
+      font-weight: 400;
+    }
+    .cars-container,
+    .parts-container,
+    .blog-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .cars-container .box,
+    .parts-container .box,
+    .blog-container .box {
+      flex: 1 1 17rem;
+      position: relative;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .cars-container .box img,
+    .parts-container .box img,
+    .blog-container .box img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .cars-container .box h2,
+    .parts-container .box h3,
+    .blog-container .box h3 {
+      margin-top: 1rem;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    .parts-container .box .bx {
+      color: green;
+      margin: 0.8rem 0;
+    }
+    .parts-container .box .details {
+      position: absolute;
+      bottom: 1.8rem;
+      right: 1rem;
+      color: blue;
+    }
+    .parts-container .box .details:hover {
+      color: blueviolet;
+    }
+    .blog-container .box span {
+      font-size: 0.8rem;
+      color: var(--main-color);
+    }
+    .blog-container .box .blog-btn {
+      display: flex;
+      align-items: center;
+      column-gap: 4px;
+      color: var(--text-color);
+    }
+    .blog-container .box .blog-btn:hover {
+      color: var(--main-color);
+      column-gap: 0.7rem;
+      transition: 0.4s;
+    }
+    .about {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .about-img {
+      flex: 1 1 21rem;
+    }
+    .about-text {
+      flex: 1 1 21rem;
+    }
+    .about-text span {
+      font-weight: 500;
+      color: var(--main-color);
+    }
+    .about-text h2 {
+      font-size: 1.7rem;
+    }
+    .about-text p {
+      font-size: 0.938rem;
+      margin: 0.5rem 0 1.4rem;
+    }
+    .footer {
+      background: var(--text-color);
+      color: antiquewhite;
+      border-top: 2px solid var(--main-color);
+    }
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .footer-box {
+      display: flex;
+      flex-direction: column;
+    }
+    .footer-box h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .footer-box a,
+    .footer-box p {
+      color: white;
+      margin-bottom: 10px;
+    }
+    .footer-box a:hover,
+    .footer-box p:hover {
+      color: red;
+    }
+    .social a {
+      color: var(--bg-color);
+      font-size: 24px;
+      margin-right: 1rem;
+    }
+    .social a:hover {
+      color: var(--main-color);
+    }
+    .copyright {
+      padding: 20px;
+      text-align: center;
+      color: var(--bg-color);
+      background-color: var(--text-color);
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="nav container">
+      <i class="bx bx-menu" id="menu-icon"></i>
+      <a href="#" class="logo">Car <span>Point</span></a>
+      <ul class="navbar">
+        <li><a href="#home" class="active">        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#cars">Cars</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#parts">Parts</a></li>
+        <li><a href="#blog">Our Blog</a></li>
+      </ul>
+      <i class="bx bx-search" id="search-icon"></i>
+      <div class="search-box container">
+        <input type="search" placeholder="Search..." />
+      </div>
+    </div>
+  </header>
+
+  <!-- Home Section -->
+  <section class="home" id="home">
+    <div class="home-text">
+      <h1>We Have Everything <br />Your Car <span>Needs</span></h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. <br />Perspiciatis, voluptates expedita.</p>
+      <a href="#" class="btn">Discover Now</a>
+    </div>
+  </section>
+
+  <!-- Cars Section -->
+  <section class="cars" id="cars">
+    <div class="heading">
+      <span>Car Types</span>
+      <h2>We have all types of cars</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus.</p>
+    </div>
+    <div class="cars-container container">
+      <div class="box"><img src="Car 1.jpg" alt=""><h2>Peugeot Car</h2></div>
+      <div class="box"><img src="Car 2.jpg" alt=""><h2>Porsche Car</h2></div>
+      <div class="box"><img src="Car 3.jpg" alt=""><h2>Honda Car</h2></div>
+      <div class="box"><img src="Car 4.jpg" alt=""><h2>Nissan Car</h2></div>
+      <div class="box"><img src="Car 5.jpg" alt=""><h2>Volkswagen Car</h2></div>
+      <div class="box"><img src="Car 7.jpg" alt=""><h2>Chevrolet Car</h2></div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about container" id="about">
+    <div class="about-img"><img src="IMG-20250506-WA0017.jpg" alt="About Us"></div>
+    <div class="about-text">
+      <span>About Us</span>
+      <h2>Cheap Prices With <br><span>Quality Cars</span></h2>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur libero ratione quisquam repudiandae?</p>
+      <a href="#" class="btn">Learn More</a>
+    </div>
+  </section>
+
+  <!-- Parts Section -->
+  <section class="parts" id="parts">
+    <div class="heading">
+      <span>What We Offer</span>
+      <h2>Our Car is Always Very Excellent</h2>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit, voluptatibus!</p>
+    </div>
+    <div class="parts-container container">
+      <div class="box"><img src="Spare part.jpg" alt=""><h3>Auto Spare Parts</h3><i class="bx bxs-star">(6 reviews)</i><a href="#" class="details">View Details</a><a href="#" class="btn">Buy Now</a></div>
+      <div class="box"><img src="IMG-20250506-WA0019.jpg" alt=""><h3>Auto Spare Parts</h3><i class="bx bxs-star">(6 reviews)</i><a href="#" class="details">View Details</a><a href="#" class="btn">Buy Now</a></div>
+      <div class="box"><img src="Spare part 2.jpg" alt=""><h3>Auto Spare Parts</h3><i class="bx bxs-star">(6 reviews)</i><a href="#" class="details">View Details</a><a href="#" class="btn">Buy Now</a></div>
+      <div class="box"><img src="Spare part 3.jpg" alt=""><h3>Auto Spare Parts</h3><i class="bx bxs-star">(6 reviews)</i><a href="#" class="details">View Details</a><a href="#" class="btn">Buy Now</a></div>
+      <div class="box"><img src="Spare part 4.jpg" alt=""><h3>Auto Spare Parts</h3><i class="bx bxs-star">(6 reviews)</i><a href="#" class="details">View Details</a><a href="#" class="btn">Buy Now</a></div>
+      <div class="box"><img src="Spare part 5.jpg" alt=""><h3>Auto Spare Parts</h3><i class="bx bxs-star">(6 reviews)</i><a href="#" class="details">View Details</a><a href="#" class="btn">Buy Now</a></div>
+    </div>
+  </section>
+
+  <!-- Blog Section -->
+  <section class="blog" id="blog">
+    <div class="heading">
+      <span>Our Blog</span>
+      <h2>Our Blog Content</h2>
+      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quibusdam perferendis eveniet recusandae.</p>
+    </div>
+    <div class="blog-container container">
+      <div class="box"><img src="Car 8.jpg" alt=""><span>May 6 2025</span><h3>How to get the Perfect Car at a Low Cost</h3><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minus, voluptatem labore.</p><a href="#" class="blog-btn">Read More <i class="bx bx-right-arrow-alt"></i></a></div>
+      <div class="box"><img src="IMG-20250506-WA0022.jpg" alt=""><span>May 6 2025</span><h3>How to get the Perfect Car at a Low Cost</h3><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minus, voluptatem labore.</p><a href="#" class="blog-btn">Read More <i class="bx bx-right-arrow-alt"></i></a></div>
+      <div class="box"><img src="IMG-20250506-WA0023.jpg" alt=""><span>May 6 2025</span><h3>How to get the Perfect Car at a Low Cost</h3><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minus, voluptatem labore.</p><a href="#" class="blog-btn">Read More <i class="bx bx-right-arrow-alt"></i></a></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <section class="footer">
+    <div class="footer-container container">
+      <div class="footer-box">
+        <a href="#" class="logo">Car <span>Point</span></a>
+        <div class="social">
+          <a href="#"><i class="bx bxl-facebook"></i></a>
+          <a href="#"><i class="bx bxl-twitter"></i></a>
+          <a href="#"><i class="bx bxl-instagram"></i></a>
+          <a href="#"><i class="bx bxl-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-box">
+        <h3>Page</h3>
+        <a href="#">Home</a>
+        <a href="#">Cars</a>
+        <a href="#">Parts</a>
+        <a href="#">Sales</a>
+      </div>
+      <div class="footer-box">
+        <h3>Legal</h3>
+        <a href="#">Privacy</a>
+        <a href="#">Refund Policy</a>
+        <a href="#">Cookie Policy</a>
+        <a href="#">Copyright Issues</a>
+      </div>
+      <div class="footer-box">
+        <h3>Contact</h3>
+        <p>United States of America</p>
+        <p>People's Republic of China</p>
+        <p>Germany</p>
+        <p>Japan</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="copyright">
+    <p>&#169; CBN All Rights Reserved 2025</p>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    let menu = document.querySelector(".navbar");
+    let search = document.querySelector(".search-box");
+
+    document.querySelector("#menu-icon").onclick = () => {
+      menu.classList.toggle("active");
+      search.classList.remove("active");
+    };
+
+    document.querySelector("#search-icon").onclick = () => {
+      search.classList.toggle("active");
+      menu.classList.remove("active");
+    };
+
+    window.onscroll = () => {
+      menu.classList.remove("active");
+      search.classList.remove("active");
+    };
+
+    let header = document.querySelector("header");
+    window.addEventListener("scroll", () => {
+      header.classList.toggle("shadow", window.scrollY > 0);
+    });
+  </script>
+</body>
+</html>
